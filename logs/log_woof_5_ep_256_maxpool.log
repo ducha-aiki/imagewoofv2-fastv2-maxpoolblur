@@ -1,0 +1,98 @@
+lr: 0.008; size: 256; sqrmom: 0.99; mom: 0.95; eps: 1e-06
+Run: 0, MaxPoolBlur is False
+█epoch     train_loss  valid_loss  accuracy  top_k_accuracy  time    
+██0         1.976149    2.035875    0.365742  0.821838        02:06     
+██1         1.751813    1.833725    0.385849  0.882922        02:03     
+██2         1.570230    1.833161    0.440061  0.881140        02:03     
+██3         1.395406    1.393747    0.625604  0.952151        02:03     
+██4         1.180123    1.130804    0.741919  0.972003        02:04     
+Run: 1, MaxPoolBlur is False
+█epoch     train_loss  valid_loss  accuracy  top_k_accuracy  time    
+██0         1.968633    2.293840    0.244846  0.739628        02:04     
+██1         1.727846    1.812083    0.439552  0.893612        02:05     
+██2         1.564861    2.446800    0.301349  0.721812        02:06     
+██3         1.412241    1.480221    0.569611  0.933571        02:05     
+██4         1.192297    1.133036    0.744464  0.970985        02:06     
+Run: 2, MaxPoolBlur is False
+█epoch     train_loss  valid_loss  accuracy  top_k_accuracy  time    
+██0         1.989490    1.847311    0.405701  0.869941        02:05     
+██1         1.737102    1.655059    0.472130  0.916009        02:06     
+██2         1.541735    1.815381    0.445406  0.866378        02:06     
+██3         1.405653    1.286099    0.660219  0.960804        02:06     
+██4         1.173600    1.110813    0.750064  0.973276        02:06     
+Run: 3, MaxPoolBlur is False
+█epoch     train_loss  valid_loss  accuracy  top_k_accuracy  time    
+█0         2.348627    00:02       
+Traceback (most recent call last):
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/learner.py", line 289, in fit
+    self._do_epoch_train()
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/learner.py", line 264, in _do_epoch_train
+    self.all_batches()
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/learner.py", line 242, in all_batches
+    for o in enumerate(self.dl): self.one_batch(*o)
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/learner.py", line 248, in one_batch
+    self.pred = self.model(*self.xb);                self('after_pred')
+  File "/home.dokt/mishkdmy/.conda/envs/fastai1/lib/python3.7/site-packages/torch/nn/modules/module.py", line 541, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home.dokt/mishkdmy/.conda/envs/fastai1/lib/python3.7/site-packages/torch/nn/modules/container.py", line 92, in forward
+    input = module(input)
+  File "/home.dokt/mishkdmy/.conda/envs/fastai1/lib/python3.7/site-packages/torch/nn/modules/module.py", line 541, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home.dokt/mishkdmy/.conda/envs/fastai1/lib/python3.7/site-packages/torch/nn/modules/container.py", line 92, in forward
+    input = module(input)
+  File "/home.dokt/mishkdmy/.conda/envs/fastai1/lib/python3.7/site-packages/torch/nn/modules/module.py", line 541, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/layers.py", line 500, in forward
+    def forward(self, x): return self.act(self.convpath(x) + self.idpath(x))
+  File "/home.dokt/mishkdmy/.conda/envs/fastai1/lib/python3.7/site-packages/torch/nn/modules/module.py", line 541, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/layers.py", line 570, in forward
+    def forward(self, x): return MishJitAutoFn.apply(x)
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/layers.py", line 558, in forward
+    return _mish_jit_fwd(x)
+RuntimeError: CUDA out of memory. Tried to allocate 16.00 MiB (GPU 0; 10.92 GiB total capacity; 10.30 GiB already allocated; 5.19 MiB free; 61.04 MiB cached)
+The above operation failed in interpreter, with the following stack trace:
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "train.py", line 68, in <module>
+    blurpool: Param("Convert MaxPool to MaxPoolBlur", bool)=False,
+  File "/home.dokt/mishkdmy/.conda/envs/fastai1/lib/python3.7/site-packages/fastscript/core.py", line 76, in call_parse
+    return _f()
+  File "/home.dokt/mishkdmy/.conda/envs/fastai1/lib/python3.7/site-packages/fastscript/core.py", line 73, in _f
+    func(**args.__dict__)
+  File "train.py", line 97, in main
+    learn.fit_flat_cos(epochs, lr, wd=1e-2, cbs=cbs)
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/callback/schedule.py", line 112, in fit_flat_cos
+    self.fit(n_epoch, cbs=ParamScheduler(scheds)+L(cbs), reset_opt=reset_opt, wd=wd)
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/learner.py", line 295, in fit
+    finally:                               self('after_fit')
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/learner.py", line 223, in __call__
+    def __call__(self, event_name): L(event_name).map(self._call_one)
+  File "/mnt/home.dokt/mishkdmy/dev/fastcore/fastcore/foundation.py", line 362, in map
+    return self._new(map(g, self))
+  File "/mnt/home.dokt/mishkdmy/dev/fastcore/fastcore/foundation.py", line 315, in _new
+    def _new(self, items, *args, **kwargs): return type(self)(items, *args, use_list=None, **kwargs)
+  File "/mnt/home.dokt/mishkdmy/dev/fastcore/fastcore/foundation.py", line 41, in __call__
+    res = super().__call__(*((x,) + args), **kwargs)
+  File "/mnt/home.dokt/mishkdmy/dev/fastcore/fastcore/foundation.py", line 306, in __init__
+    items = list(items) if use_list else _listify(items)
+  File "/mnt/home.dokt/mishkdmy/dev/fastcore/fastcore/foundation.py", line 242, in _listify
+    if is_iter(o): return list(o)
+  File "/mnt/home.dokt/mishkdmy/dev/fastcore/fastcore/foundation.py", line 208, in __call__
+    return self.fn(*fargs, **kwargs)
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/learner.py", line 226, in _call_one
+    [cb(event_name) for cb in sort_by_run(self.cbs)]
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/learner.py", line 226, in <listcomp>
+    [cb(event_name) for cb in sort_by_run(self.cbs)]
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/learner.py", line 25, in __call__
+    if self.run and _run: getattr(self, event_name, noop)()
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/callback/fp16.py", line 68, in after_fit
+    def after_fit(self): self.learn.model = convert_network(self.model, dtype=torch.float32)
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/fp16_utils.py", line 68, in convert_network
+    convert_module(module, dtype)
+  File "/mnt/home.dokt/mishkdmy/dev/fastai2/fastai2/fp16_utils.py", line 54, in convert_module
+    param._grad.data = param._grad.data.to(dtype=dtype)
+RuntimeError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.92 GiB total capacity; 10.34 GiB already allocated; 7.19 MiB free; 23.58 MiB cached)
